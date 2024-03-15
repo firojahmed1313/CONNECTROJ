@@ -15,7 +15,8 @@ export default function Home() {
 
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://3000-firojahmed131-rojtalker-yvc8lu2qx16.ws-us110.gitpod.io/api/user/65f422824b41db8aa1758');
+        const id="65f4228ef24b41db8a8a1758";
+        const response = await axios.get(`https://3000-firojahmed131-rojtalker-yvc8lu2qx16.ws-us110.gitpod.io/api/user/${id}`);
         console.log(response);
         //setData(response.data.message);
       } catch (error) {

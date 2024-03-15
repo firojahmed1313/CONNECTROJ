@@ -45,10 +45,10 @@ export const logInUser = async(req, res, next) => {
 }
 
 export const  getUserById =async(req,res,next)=>{
-    const userId = req.params.userId;
-    console.log(userId)
+    const _id = req.query.id;
+    console.log(_id)
     try {
-        let user=await User.findById(userId);
+        let user=await User.findById(_id);
         return res.status(201).json({
             success: true,
             user
