@@ -11,13 +11,11 @@ export default function Home() {
   const addUser = () => {
     let name = "firoj";
     let email = "f@f";
-    let password = "1245";
+    let password = "12345";
 
     const fetchData = async () => {
       try {
-        const response = await axios.post('https://3000-firojahmed131-rojtalker-yvc8lu2qx16.ws-us110.gitpod.io/api/auth/logIn',
-          {name,email, password }
-        );
+        const response = await axios.get('https://3000-firojahmed131-rojtalker-yvc8lu2qx16.ws-us110.gitpod.io/api/user/65f422824b41db8aa1758');
         console.log(response);
         //setData(response.data.message);
       } catch (error) {

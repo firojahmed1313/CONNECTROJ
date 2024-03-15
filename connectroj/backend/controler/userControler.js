@@ -37,10 +37,35 @@ export const logInUser = async(req, res, next) => {
           massage: "password or email do not match .....",
         });
     }
-    return res.status(201).json({
+    return res.status(200).json({
         success: true,
         massage: "User LogIn done .....",
         isuserExist
     });
+}
+
+export const  getUserById =async(req,res,next)=>{
+    const userId = req.params.userId;
+    console.log(userId)
+    try {
+        let user=await User.findById(userId);
+        return res.status(201).json({
+            success: true,
+            user
+        });
+    } catch (error) {
+        console.warn(error)
+    }
+}
+export const  getUser =async(req,res,next)=>{
+    try {
+        let user=await User.find();
+        return res.status(201).json({
+            success: true,
+            user
+        });
+    } catch (error) {
+        console.warn(error)
+    }
 }
 
