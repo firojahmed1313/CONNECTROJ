@@ -54,7 +54,9 @@ export const  getUserById =async(req,res,next)=>{
             user
         });
     } catch (error) {
-        console.warn(error)
+        return res.status(200).json({
+            error
+        })
     }
 }
 export const  getUser =async(req,res,next)=>{
