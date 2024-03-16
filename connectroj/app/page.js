@@ -27,7 +27,7 @@ export default function Home() {
     fetchData();
   }
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex min-h-[80dvh] flex-col items-center justify-between p-4">
       <h2>MD FIROJ AHMED</h2>
       <button onClick={addUser}>click</button>
 
