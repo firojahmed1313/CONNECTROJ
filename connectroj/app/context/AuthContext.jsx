@@ -5,7 +5,7 @@ const { createContext, useState } = require("react");
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState();
     const [isLogIn, setIsLogIn] = useState(false);
     return (
         <AuthContext.Provider value={

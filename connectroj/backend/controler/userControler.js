@@ -1,3 +1,4 @@
+import { createCookie } from "../config/cookies";
 import  {User}  from "../model/user";
 
 export const registerUser = async(req, res, next) => {
@@ -37,11 +38,7 @@ export const logInUser = async(req, res, next) => {
           massage: "password or email do not match .....",
         });
     }
-    return res.status(200).json({
-        success: true,
-        massage: "User LogIn done .....",
-        isuserExist
-    });
+    createCookie(isuserExist,res,"LogIn Done");
 }
 
 export const  getUserById =async(req,res,next)=>{

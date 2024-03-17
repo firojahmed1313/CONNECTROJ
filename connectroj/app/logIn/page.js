@@ -1,20 +1,31 @@
 "use client"
 import axios from 'axios';
-import React, { useState } from 'react'
-
+import Cookies from 'js-cookie';
+import React, { useContext, useState } from 'react'
+import { AuthContext } from '../context/AuthContext';
 const logInUser = () => {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
+    const auth= useContext(AuthContext);
+    console.log(auth);
     const logInUser = async () => {
         console.log(email, password);
         const url = process.env.F_URL;
         console.log(url);
 
         try {
-            const userData = await axios.post(`${url}/api/auth/logIn`, { email, password });
+            const userData = await axios.post(`/api/auth/logIn`, { email, password });
             console.log(userData);
             if (userData.status === 200) {
-                window.location.href = "/chat";
+                Cookies.set("connectroj",userData.data.token,{
+                    expires: 1,
+                    path: '/',
+                    secure: true,
+                    sameSite: "strict",
+                })
+                auth.setIsLogIn(true);
+                auth.setUser(userData.data.user);
+                //window.location.href = "/chat";
             }
         } catch (error) {
             console.warn(error);
