@@ -10,9 +10,6 @@ const logInUser = () => {
     console.log(auth);
     const logInUser = async () => {
         console.log(email, password);
-        const url = process.env.F_URL;
-        console.log(url);
-
         try {
             const userData = await axios.post(`/api/auth/logIn`, { email, password });
             console.log(userData);
@@ -25,7 +22,7 @@ const logInUser = () => {
                 })
                 auth.setIsLogIn(true);
                 auth.setUser(userData.data.user);
-                //window.location.href = "/chat";
+                window.location.href = "/chat";
             }
         } catch (error) {
             console.warn(error);

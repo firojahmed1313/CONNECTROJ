@@ -16,9 +16,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className} suppressHydrationWarning={true} >
         <AuthProvider>
-          <Navber />
-          {children}
-          <Footer />
+            <Navber />
+            {children}
+            <Footer />
         </AuthProvider>
       </body>
     </html>

@@ -10,6 +10,7 @@ const Navber = () => {
         Cookies.remove("connectroj");
         auth.setIsLogIn(false);
         auth.setUser(null);
+        window.location.href = "/";
     }
     return (
         <header className="text-gray-600 body-font">
