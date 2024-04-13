@@ -1,13 +1,18 @@
 "use client"
 import axios from "axios";
-import Image from "next/image";
-import { useEffect, useState } from "react";
-
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "./context/AuthContext";
+import Cookies from "js-cookie";
 export default function Home() {
   const [data, setData] = useState();
-  /*useEffect(() => {
-    
-  }, []); */
+  const auth = useContext(AuthContext);
+  useEffect(() => {
+    const cookie = Cookies.get('connectroj');
+    if (cookie) {
+      auth.setIsLogIn(true)
+    }
+  }, []);
+
   const addUser = () => {
     let name = "firoj";
     let email = "f@f";
@@ -15,8 +20,8 @@ export default function Home() {
 
     const fetchData = async () => {
       try {
-        const id="65f4228ef24b41db8a8a1757";
-        const response = await axios.get(`https://3000-firojahmed131-rojtalker-yvc8lu2qx16.ws-us110.gitpod.io/api/user/${id}`);
+        const id = "65f4228ef24b41db8a8a1757";
+        const response = await axios.get(`api/user/${id}`);
         console.log(response);
         //setData(response.data.message);
       } catch (error) {

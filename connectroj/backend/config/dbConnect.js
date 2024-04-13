@@ -4,13 +4,16 @@ const dbConnect = () => {
         console.log("alredy dbconnect");
         return;
     }
-    const DB_URL="mongodb+srv://newgitpods:VL6eb0rHhdZJ1gv0@mdfirojahmed.chpjhjr.mongodb.net/?retryWrites=true&w=majority";
+    const DB_URL = "mongodb+srv://newgitpods:VL6eb0rHhdZJ1gv0@mdfirojahmed.chpjhjr.mongodb.net/?retryWrites=true&w=majority";
     mongoose.connect(DB_URL, {
-        dbName: "Connectroj",        
-    }).then(() => {
-        console.log("detabase connected");
-    }).catch((error) => {
-        console.log(error());
+        dbName: "Connectroj",
+    });
+
+    const db = mongoose.connection;
+    db.on("error", console.error.bind(console, "Connection error:"));
+    db.once("open", () => {
+        console.log("Connected to MongoDB");
+        
     });
 }
 export default dbConnect;

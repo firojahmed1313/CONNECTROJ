@@ -2,10 +2,12 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import React, { useContext, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { AuthContext } from '../context/AuthContext';
 const logInUser = () => {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
+    const router = useRouter()
     const auth= useContext(AuthContext);
     console.log(auth);
     const logInUser = async () => {
@@ -22,7 +24,7 @@ const logInUser = () => {
                 })
                 auth.setIsLogIn(true);
                 auth.setUser(userData.data.user);
-                window.location.href = "/chat";
+                router.push("/chat");
             }
         } catch (error) {
             console.warn(error);

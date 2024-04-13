@@ -10,7 +10,7 @@ const RegisterUser = () => {
         console.log(name, email, password);
         const url = process.env.F_URL;
         try {
-            const userData = await axios.post(`${url}/api/auth/register`, { name, email, password });
+            const userData = await axios.post(`/api/auth/register`, { name, email, password });
             console.log(userData);
             if (userData.status === 201) {
                 window.location.href = "/logIn";
