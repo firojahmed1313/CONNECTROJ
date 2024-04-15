@@ -1,3 +1,4 @@
+import { isSignin } from "../config/auth";
 import { createCookie } from "../config/cookies";
 import  {User}  from "../model/user";
 
@@ -57,8 +58,11 @@ export const  getUserById =async(req,res,next)=>{
     }
 }
 export const  getUser =async(req,res,next)=>{
+
     try {
-        let user=await User.find();
+        let user= await isSignin(req);
+        console.log("user2",user)
+        //let user=User.find();
         return res.status(201).json({
             success: true,
             user

@@ -1,12 +1,19 @@
 "use client"
 import Cookies from 'js-cookie'
 import Link from 'next/link'
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { AuthContext } from '@/app/context/AuthContext';
 const Navber = () => {
-    const auth=useContext(AuthContext);
-    console.log(auth);
-    const DeleteCookies=()=>{
+    const auth = useContext(AuthContext);
+    useEffect(() => {
+        const cookie = Cookies.get('connectroj');
+        if (cookie) {
+            auth.setIsLogIn(true)
+        }
+    }, []);
+    console.log(auth.isLogIn);
+
+    const DeleteCookies = () => {
         Cookies.remove("connectroj");
         auth.setIsLogIn(false);
         auth.setUser(null);
@@ -22,15 +29,25 @@ const Navber = () => {
                     <Link href={"/"}><span className="ml-3 text-xl">CONNECTROJ</span></Link>
                 </div>
                 <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
-                    <Link href={"/register"} className="mr-5 hover:text-gray-900">
-                        <h3>Register</h3>
-                    </Link>
-                    <Link href={"/logIn"} className="mr-5 hover:text-gray-900">
-                        <h3>LogIn</h3>
-                    </Link>
-                    <Link href={"/chat"} className="mr-5 hover:text-gray-900">
-                        <h3>Chat</h3>
-                    </Link>
+                    {
+                        (auth.isLogIn) ? <>
+                            <Link href={"/chat"} className="mr-5 hover:text-gray-900">
+                                <h3>Chat</h3>
+                            </Link>
+                            <p >{auth?.user?.name}</p>
+                        </> :
+                            <>
+                                <Link href={"/register"} className="mr-5 hover:text-gray-900">
+                                    <h3>Register</h3>
+                                </Link>
+                                <Link href={"/logIn"} className="mr-5 hover:text-gray-900">
+                                    <h3>LogIn</h3>
+                                </Link>
+                            </>
+
+                    }
+
+
                 </nav>
                 <button onClick={DeleteCookies} className="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">LogOut
                     <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 ml-1" viewBox="0 0 24 24">
