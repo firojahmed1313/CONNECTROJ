@@ -1,6 +1,6 @@
 import { isSignin } from "../config/auth";
 import { createCookie } from "../config/cookies";
-import  {User}  from "../model/user";
+import {User} from "../model/User.js";
 
 export const registerUser = async(req, res, next) => {
     const { name, email, password } = req.body;
@@ -28,13 +28,13 @@ export const logInUser = async(req, res, next) => {
     let isuserExist = await User.findOne({ email });
     console.log(isuserExist)
     if (!isuserExist) {
-        return res.status(200).json({
+        return res.status(400).json({
             success: false,
             massage: "User not exist .....",
         });
     }
     else if (password != isuserExist.password){
-        return res.status(200).json({
+        return res.status(400).json({
           success: false,
           massage: "password or email do not match .....",
         });

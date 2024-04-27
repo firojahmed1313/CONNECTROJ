@@ -9,7 +9,7 @@ const ChatSection = () => {
   const [udata,setUdata] =useState();
   const auth = useContext(AuthContext);
     console.log(auth.user);
-  useEffect(() => {
+  /*useEffect(() => {
     
     const getUser =async () =>{
       try {
@@ -30,7 +30,7 @@ const ChatSection = () => {
     getUser();
     
   }, [])
-  console.log(udata);
+  console.log(udata);*/
   return (
     <div>ChatSection</div>
   )

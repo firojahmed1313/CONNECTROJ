@@ -1,5 +1,5 @@
 import  Jwt  from "jsonwebtoken";
-import { User } from "../model/user";
+import { User } from "../model/User";
 
 export const isSignin = async(req) =>{
     //console.log("cookies is : ",req.headers.authorization);
